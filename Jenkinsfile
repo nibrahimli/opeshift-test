@@ -22,7 +22,7 @@ pipeline {
         }
         stage("Promote"){
             steps {
-                sh "oc start-build -F openshift-jee-sample-docker --from-file=openshift-jee-sample/target/ROOT.war"
+                sh "oc start-build -F openshift-jee-sample-docker --from-file=target/ROOT.war"
             }
         }       
     }
