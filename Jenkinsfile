@@ -7,8 +7,7 @@ pipeline {
     stages {
         stage("SCM"){
             steps {
-                sh "git clone https://github.com/openshift/openshift-jee-sample.git"
-                sh 'git clone https://jenkins-token:ZA51h-b5cyBwRFGgdSyP@myapps.extranet.geodis.org/scm/de/applications_mobiles/mobicourse.git'
+                sh "git clone https://github.com/openshift/openshift-jee-sample.git"                
             }
         }
         stage("Build"){
