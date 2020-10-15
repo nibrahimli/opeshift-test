@@ -4,18 +4,24 @@ pipeline {
     }
     stages {
         stage("SCM"){
-            git branch: 'master', 
-                url: 'https://github.com/openshift/openshift-jee-sample.git'
-                //  credentialsId: 'myGitCredentialId'
+            steps {
+                sh "git clone https://github.com/openshift/openshift-jee-sample.git ."
+            }
         }
         stage("Build"){
-            sh "mvn install -Popenshift -DskipTests=true"
+            steps {
+                sh "mvn install -Popenshift -DskipTests=true"
+            }
         }
         stage("Package"){
-            sh "mvn -B -Popenshift package"
+            steps {
+                sh "mvn -B -Popenshift package"
+            }
         }
         stage("Promote"){
-            sh "oc start-build -F openshift-jee-sample-docker --from-file=target/ROOT.war"
+            steps {
+                sh "oc start-build -F openshift-jee-sample-docker --from-file=target/ROOT.war"
+            }
         }       
     }
 }
