@@ -7,22 +7,22 @@ pipeline {
     stages {
         stage("SCM"){
             steps {
-                sh "git clone https://github.com/openshift/openshift-jee-sample.git ."
+                sh "git clone https://github.com/openshift/openshift-jee-sample.git"
             }
         }
         stage("Build"){
             steps {
-                sh "mvn install -Popenshift -DskipTests=true"
+                sh "mvn -f openshift-jee-sample install -Popenshift -DskipTests=true"
             }
         }
         stage("Package"){
             steps {
-                sh "mvn -B -Popenshift package"
+                sh "mvn -f openshift-jee-sample -B -Popenshift package"
             }
         }
         stage("Promote"){
             steps {
-                sh "oc start-build -F openshift-jee-sample-docker --from-file=target/ROOT.war"
+                sh "oc start-build -F openshift-jee-sample-docker --from-file=openshift-jee-sample/target/ROOT.war"
             }
         }       
     }
