@@ -8,6 +8,7 @@ pipeline {
         stage("SCM"){
             steps {
                 sh "git clone https://github.com/openshift/openshift-jee-sample.git"
+                sh 'git clone https://os-token:m4A9ZznTi4qzsucpBDz4@myapps.extranet.geodis.org/scm/de/geofinder/geofinder.git'
             }
         }
         stage("Build"){
