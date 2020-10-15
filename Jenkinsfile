@@ -1,6 +1,8 @@
 pipeline {
     agent {
-            label 'maven'
+            node {
+                label 'maven'
+            }
     }
     stages {
         stage("SCM"){
